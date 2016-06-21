@@ -1,3 +1,8 @@
+// HELPERS
+var templateHelper = function(id) {
+	return _.template( $('#' + id).html() );
+};
+
 var Person = Backbone.Model.extend({
 	defaults: {
 		name: 'Osacr Oceguera',
@@ -31,7 +36,7 @@ var PeopleView = Backbone.View.extend({
 
 var PersonView = Backbone.View.extend({
 	tagName: 'li',
-	template: _.template($('#personTemplate').html()),
+	template: templateHelper('personTemplate'),
 	render: function() {
 		this.$el.html(
 			this.template(this.model.toJSON())
