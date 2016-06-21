@@ -5,7 +5,7 @@
 		Views: {}
 	};
 
-	window.template = function(id){
+	window.templateHelper = function(id){
 		return _.template( $('#' + id).html() );
 	};
 })();
@@ -19,7 +19,7 @@ App.Models.Person = Backbone.Model.extend({
 })
 
 App.Collections.People = Backbone.Collection.extend({
-	model: Person
+	model: App.Models.Person
 })
 
 // View for all people
@@ -29,7 +29,7 @@ App.Views.People = Backbone.View.extend({
 		// must do certain things as specified above.
 		//Loop over all the person objects
 		this.collection.each(function(person){
-			var personView = new PersonView({
+			var personView = new App.Views.Person({
 				model: person
 			})
 
@@ -54,7 +54,7 @@ App.Views.Person = Backbone.View.extend({
 })
 
 
-var peopleCollection = new PeopleCollection([
+var peopleCollection = new App.Collections.People([
 	{
 		name: 'Mohit Jain',
 		age: 26
