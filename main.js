@@ -3,17 +3,17 @@ var Person = Backbone.Model.extend({
 		name: 'Osacr Oceguera',
 		age: 25,
 		occupation: 'Worker'
-	},
-	validate: function (attributes) {
-		if (attributes.age < 0) {
-			return 'Age must be positive'
-		}
+	}
+})
 
-		if (!attributes.name) {
-			return 'Every person must have a name'
-		}
+var PersonView = Backbone.View.extend({
+	tagName: 'li',
+	className: 'person',
+	id: 'person-id',
+	initialize: function () {
+		this.render()
 	},
-	work: function () {
-		return this.get('name') + 'is working'
+	render: function() {
+		this.$el.html( this.model.get('name') + ' (' + this.model.get('age') + ') - ' + this.model.get('occupation') );
 	}
 })
