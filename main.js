@@ -1,9 +1,16 @@
-// HELPERS
-var templateHelper = function(id) {
-	return _.template( $('#' + id).html() );
-};
+(function(){
+	window.App = {
+		Models: {},
+		Collections: {},
+		Views: {}
+	};
 
-var Person = Backbone.Model.extend({
+	window.template = function(id){
+		return _.template( $('#' + id).html() );
+	};
+})();
+
+App.Models.Person = Backbone.Model.extend({
 	defaults: {
 		name: 'Osacr Oceguera',
 		age: 25,
@@ -11,12 +18,12 @@ var Person = Backbone.Model.extend({
 	}
 })
 
-var PeopleCollection = Backbone.Collection.extend({
+App.Collections.People = Backbone.Collection.extend({
 	model: Person
 })
 
 // View for all people
-var PeopleView = Backbone.View.extend({
+App.Views.People = Backbone.View.extend({
 	tagName: 'ul',
 	render: function () {
 		// must do certain things as specified above.
@@ -34,7 +41,7 @@ var PeopleView = Backbone.View.extend({
 	}
 })
 
-var PersonView = Backbone.View.extend({
+App.Views.Person = Backbone.View.extend({
 	tagName: 'li',
 	template: templateHelper('personTemplate'),
 	render: function() {
@@ -64,7 +71,7 @@ var peopleCollection = new PeopleCollection([
 	}
 ]);
 
-var peopleView = new PeopleView({
+var peopleView = new App.Views.People({
 	collection: peopleCollection
 })
 
